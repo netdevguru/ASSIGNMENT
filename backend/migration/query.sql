@@ -1,0 +1,24 @@
+CREATE TABLE IF NOT EXISTS products(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	stock INTEGER NOT NULL ,
+	price INTEGER NOT NULL,
+	created_at VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS orders(
+	id SERIAL PRIMARY KEY,
+	customer_email VARCHAR(255) NOT NULL,
+	status VARCHAR(255) NOT NULL ,
+	created_at VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS order_items(
+	id SERIAL PRIMARY KEY,
+	order_id INTEGER NOT NULL,
+	product_id INTEGER NOT NULL ,
+	qty INTEGER NOT NULL,
+	unit_price INTEGER NOT NULL,
+	CONSTRAINT fk_orderid FOREIGN KEY (order_id) REFERENCES orders,
+	CONSTRAINT fk_productid FOREIGN KEY (product_id) REFERENCES products
+);
